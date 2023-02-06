@@ -62,7 +62,7 @@ def translate_info(file_names: list, save_root: str, class_list: list, train_val
 
 
 if __name__ == "__main__":
-
+    # 该程序将labelme标注的分割数据转换为yolo数据
     # voc数据集根目录以及版本
     voc_root = r"D:\MyData\voc_chejianluosi_data\VOCdevkit2007"
     voc_version = "VOC2007"
