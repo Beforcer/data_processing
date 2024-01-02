@@ -114,7 +114,7 @@ def translate_info(file_names: list, save_root: str, class_list: list, train_val
 if __name__ == "__main__":
 
     # voc数据集根目录以及版本
-    voc_root = r"D:\MyData\voc_unknow_data\VOCdevkit2007"
+    voc_root = r"D:\MyData\voc_abnormal_data\VOCdevkit2007"
     voc_version = "VOC2007"
 
     # 转换的训练集以及验证集对应txt文件
@@ -122,11 +122,11 @@ if __name__ == "__main__":
     val_txt = "val.txt"
 
     # 转换后的文件保存目录
-    save_file_root = r"D:\MyData\yolo_unknow_data"
+    save_file_root = r"D:\MyData\yolo_abnormal_data"
 
     # 数据集对应的类别名称，该名称要与yolov5中的yaml文件中的类别一致
     # class_list = ['crazing', 'inclusion', 'patches', 'pitted_surface', 'rolled-in_scale', 'scratches']
-    class_list = ['unknow']
+    class_list = ['abnormal']
     # 拼接出voc的images目录，xml目录，txt目录
     voc_images_path = os.path.join(voc_root, voc_version, "JPEGImages")
     voc_xml_path = os.path.join(voc_root, voc_version, "Annotations")

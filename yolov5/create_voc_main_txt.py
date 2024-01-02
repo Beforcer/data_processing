@@ -6,11 +6,11 @@ if __name__ == '__main__':
     # 将所有数据分为trainval和test，trainval_percent表示trainval的百分比，剩下的是test,train_percent是trainval中train的百分比，剩下的是val
     # 将train_percent设为1，那么val中则没有数据
     trainval_percent = 1
-    train_percent = 0.8
-    voc_root = r'D:\MyData\voc_chejianluosi_data\VOCdevkit2007'
+    train_percent = 0.9
+    voc_root = r'D:\MyData\data_flydetection\voc_suo_data\VOCdevkit2007'
     voc_version = "VOC2007"
     voc_images_path = os.path.join(voc_root, voc_version, "JPEGImages")
-    voc_xml_path = os.path.join(voc_root, voc_version, "seg")  # Annotations 中是目标检测信息xml,seg中是分割信息json
+    voc_xml_path = os.path.join(voc_root, voc_version, "Annotations")  # Annotations 中是目标检测信息xml,seg中是分割信息json
     txt_save_path = os.path.join(voc_root, voc_version, "ImageSets", "Main")
     # 读取voc_xml_path路径下所有的xml文件的名字
     total_xml = os.listdir(voc_xml_path)
