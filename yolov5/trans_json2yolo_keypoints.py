@@ -125,7 +125,7 @@ def translate_info(file_names: list, save_root: str, class_list: list, keypoints
 
                             # else:
                             #     print(f'{file}的{obj["label"]}BOX中的{ann["label"]}关键点超出了BOX边界')
-                    if point_num != 4:
+                    if point_num != len(keypoints_list):
                         print(f'{file}的{obj["label"]}BOX中有{point_num}个关键点')
                     info = [str(i) for i in str_list + point_list]
                     if len(info) != 5 + len(keypoints_list)*2:

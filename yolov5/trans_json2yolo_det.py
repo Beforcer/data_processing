@@ -54,8 +54,14 @@ def translate_info(file_names: list, save_root: str, class_list: list, train_val
 
     for file in tqdm(file_names, desc="translate {} file...".format(train_val)):
         # 检查下图像文件是否存在
-        img_path = os.path.join(voc_images_path, file + ".jpg")
-        assert os.path.exists(img_path), "file:{} not exist...".format(img_path)
+        # img_path = os.path.join(voc_images_path, file + ".png")
+        if not os.path.exists(os.path.join(voc_images_path, file + ".png")) and os.path.exists(os.path.join(voc_images_path, file + ".jpg")):
+            img_path = os.path.join(voc_images_path, file + ".jpg")
+        elif not os.path.exists(os.path.join(voc_images_path, file + ".jpg")) and os.path.exists(os.path.join(voc_images_path, file + ".png")):
+            img_path = os.path.join(voc_images_path, file + ".png")
+        else:
+            print(f"image:{file} not exist...")
+        # assert os.path.exists(img_path), "file:{} not exist...".format(img_path)
 
         # 检查xml文件是否存在
         json_path = os.path.join(voc_json_path, file + ".json")
@@ -111,7 +117,8 @@ def translate_info(file_names: list, save_root: str, class_list: list, train_val
                 w = round(w / img_width, 6)
                 h = round(h / img_height, 6)
 
-                info = [str(i) for i in [class_index, xcenter, ycenter, w, h]]
+                # info = [str(i) for i in [class_index, xcenter, ycenter, w, h]]
+                info = [str(i) for i in [0, xcenter, ycenter, w, h]]
 
                 if index == 0:
                     f.write(" ".join(info))
@@ -125,7 +132,7 @@ def translate_info(file_names: list, save_root: str, class_list: list, train_val
 if __name__ == "__main__":
 
     # voc数据集根目录以及版本
-    voc_root = r"D:\MyData\data_flydetection\shenyang_08\voc_lizhu_det_data\VOCdevkit2007"
+    voc_root = r"D:\MyData\data_flydetection\shenyang_04\voc_suobi_data\VOCdevkit2007"
     voc_version = "VOC2007"
 
     # 转换的训练集以及验证集对应txt文件
@@ -133,20 +140,22 @@ if __name__ == "__main__":
     val_txt = "val.txt"
 
     # 转换后的文件保存目录
-    save_file_root = r"D:\MyData\data_flydetection\shenyang_08\yolo_lizhu_det_new_data"
+    save_file_root = r"D:\MyData\data_flydetection\shenyang_04\yolo_suobi_data"
 
     # 数据集对应的类别名称，该名称要与yolov5中的yaml文件中的类别一致
     # class_list = ['crazing', 'inclusion', 'patches', 'pitted_surface', 'rolled-in_scale', 'scratches']
     # class_list = ['zhouxiang', 'goujia', 'fujiakongqishi', 'yixitanhuang', 'kongqitanhuang', 'anquangangsuo', 'gaodufatiaozhenggan', 'anquandiaolian', 'dianxianzhijia', 'suduchuanganqi', 'paizhangqi', 'xiangti']
     # class_list = ['goutou', 'yakuiguan', 'taotongkahuan', 'duizhongzhuangzhi', 'xiangjiaodiangouweizuo', 'lundui', 'tamianzhidongdanyuan', 'zhongxinxiao', 'hengxiangzhidang', 'qianyinlagan', 'lunyuanruihua', 'qianyindianji', 'chilunxiang', 'chilunxiangdiaogan', 'lianzhoujie', 'chilunxiangjiedizhuangzhi', 'chaxuntianxian', 'kongyaji', 'xiangti']
     # class_list = ['suo_ok', 'suo_ng']
-    # class_list = ['suobi_ok', 'suobi_ng']
+    class_list = ['suobi_ok', 'suobi_ng']
     # class_list = ['suoba_ok', 'suoba_ng']
     # class_list = ['task']
-    # class_list = ['0', '1', '2', '3', '4', '5', '6']
+    # class_list = ['0', '1', '2', 'bolt1_ok', 'bolt1_ng', 'bolt1_unknown', 'OK', 'NG', 'Unknown'] # 0是OK，1是NG，2是unknown, bolt1_unknow需要修改为bolt1_unknown
     # class_list = ['abnormal']
     # class_list = ['corner', 'luoshuan']
-    class_list = ['lizhu']
+    # class_list = ['wentie_ok', 'wentie_ng']
+    # class_list = ['gongyidu_ok', 'gongyidu_ng']
+    # class_list = ['FOD', 'abnormal']
     # 拼接出voc的images目录，xml目录，txt目录
     voc_images_path = os.path.join(voc_root, voc_version, "JPEGImages")
     voc_json_path = os.path.join(voc_root, voc_version, "Annotations")

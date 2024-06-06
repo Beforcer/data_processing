@@ -89,7 +89,7 @@ def translate_info(file_names: list, save_root: str, class_list: list, train_val
 if __name__ == "__main__":
     # 该程序将labelme标注的分割数据转换为yolo数据
     # voc数据集根目录以及版本
-    voc_root = r"D:\MyData\data_flydetection\chejian_demo\voc_seg_chejian_chece_data\VOCdevkit2007"
+    voc_root = r"D:\MyData\data_flydetection\shenyang\voc_seg_shenyang_chedi_data\VOCdevkit2007"
     voc_version = "VOC2007"
 
     # 转换的训练集以及验证集对应txt文件
@@ -97,13 +97,34 @@ if __name__ == "__main__":
     val_txt = "val.txt"
 
     # 转换后的文件保存目录
-    save_file_root = r"D:\MyData\data_flydetection\chejian_demo\yolo_seg_chejian_chece_data"
+    save_file_root = r"D:\MyData\data_flydetection\shenyang\yolo_seg_shenyang_chedi_data"
 
     # 数据集对应的类别名称，该名称要与yolov5中的yaml文件中的类别一致
-    class_list = ['duangai', 'zhouxiang', 'goujia', 'fujiakongqishi', 'yixitanhuang', 'kongqitanhuang', 'anquangangsuo', 'gaodufatiaozhenggan', 'anquandiaolian', 'dianxianzhijia', 'suduchuanganqi', 'paizhangqi', 'xiangti', 'lundui']
-    # class_list = ['goutou', 'yakuiguan', 'taotongkahuan', 'duizhongzhuangzhi', 'xiangjiaodiangouweizuo', 'lundui', 'tamianzhidongdanyuan', 'zhongxinxiao', 'hengxiangzhidang', 'qianyinlagan', 'lunyuanruihua', 'qianyindianji', 'chilunxiang', 'chilunxiangdiaogan', 'lianzhoujie', 'chilunxiangjiedizhuangzhi', 'chaxuntianxian', 'kongyaji', 'xiangti']  # class names
+    # 车间车侧
+    # class_list = ['yixitanhuang', 'duangai', 'zhouxiang', 'dianxianzhijia', 'goujia', 'fujiakongqishi', 'zhawa',
+    #               'lundui', 'tamianzhidongdanyuan', 'zhongxinxiao', 'paizhangqi', 'qianyinlagan']
+    # 车间车底
+    # class_list = ['lundui', 'qianyinlagan', 'zhongxinxiao', 'chayafa', 'tamianzhidongdanyuan', 'hengxiangzhidang']
+    # 沈阳车侧
+    # class_list = ['goujia', 'duangai', 'yixitanhuang', 'zhouxiang', 'suduchuanganqi', 'dianxianzhijia', 'anquangangsuo',
+    #               'fujiakongqishi', 'zhawa', 'kongqitanhuang', 'gaodufatiaozhenggan', 'anquandiaolian', 'chufenggang',
+    #               'fuzhukongzhiban', 'kongyaji', 'TMS_A', 'xishuiwufaxiang', 'TRB', 'jiedikaiguanxiang',
+    #               'zhinengdiancifa',
+    #               'xianludiankangqi', 'IVS', 'MS/DS', 'TMS_B', 'EXB', 'shuixiang', 'miehuoxitong', 'zhidongdianzuxiang',
+    #               'HB', 'VVVF', 'yixitanghuang', 'gaoyagongdianxiang', 'SPS', 'SIV', 'xudianchixiang', 'paizhangqi',
+    #               'xiangti', 'kongqitanhang']
+    # 沈阳车底
+    class_list = ['lundui', 'zhongxinxiao', 'qianyinlagan', 'chayafa', 'hengxiangzhidang', 'tamianzhidongdanyuan',
+                  'zhongxinixao', 'chegouyouzui', 'chegougoushe', 'paizhangqi', 'taotongkahuan', 'yakuiguan',
+                  'gouweizuo', 'goutou', 'goushe', 'youzui', 'banzidongchegoutaotongkahuan',
+                  'banzidongchegoutaotongkahuanhouduan',
+                  'duizhongzhuangzhi', 'banzidongchegougouweizuo', 'lunyuanrunhua', 'zhuanxiangjiachayafa',
+                  'chaxuntianxian', 'chufenggang', 'xiangti', 'chufenggangdiaozhuang', 'kongyaji',
+                  'banyongjiuchegoutaotongkahuan',
+                  'banyongjiuchegougouweizuo', 'banyongjiuchegou', 'chilunxiang', 'qianyindianji',
+                  'chilunxiangjiedizhuangzhi',
+                  'lianzhoujie', 'danqiguan', 'shuiguan']
     # class_list = ['zhawa']
-    # class_list = ['yixitanhuang', 'dianxianzhijia', 'duangai', 'zhouxiang', 'fujiakongqishi', 'lundui', 'goujia']
     # 拼接出voc的images目录，xml目录，txt目录
     voc_images_path = os.path.join(voc_root, voc_version, "JPEGImages")
     voc_json_path = os.path.join(voc_root, voc_version, "Annotations")
